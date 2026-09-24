@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test'
 import { test } from '../fixtures/POMFixtures'
 
-test('Search for Existing Product', async ({ homePage, searchPage, page }) => {
+test('Search for Existing Product', async ({ homePage, searchPage }) => {
 
     await homePage.openApplication()
     await searchPage.enterProductName()

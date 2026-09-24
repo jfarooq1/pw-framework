@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test'
 import { test } from '../fixtures/POMFixtures'
 
-test('login with valid credentials', async ({ homePage, loginPage, page }) => {
+test('login with valid credentials', async ({ homePage, loginPage }) => {
     await homePage.openApplication()
     await homePage.clickOnMyAccount()
     await homePage.openLoginPage()
@@ -13,7 +13,7 @@ test('login with valid credentials', async ({ homePage, loginPage, page }) => {
 })
 
 
-test('login with in valid credentials', async ({ homePage, loginPage, page }) => {
+test('login with in valid credentials', async ({ homePage, loginPage }) => {
     await homePage.openApplication()
     await homePage.clickOnMyAccount()
     await homePage.openLoginPage()
@@ -24,7 +24,7 @@ test('login with in valid credentials', async ({ homePage, loginPage, page }) =>
     await loginPage.expectFailMessage()
 })
 
-test('login with empty credentials', async ({ homePage, loginPage, page }) => {
+test('login with empty credentials', async ({ homePage, loginPage }) => {
     await homePage.openApplication()
     await homePage.clickOnMyAccount()
     await homePage.openLoginPage()

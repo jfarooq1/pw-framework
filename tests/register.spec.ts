@@ -3,7 +3,7 @@ import { test } from '../fixtures/POMFixtures'
 
 
 
-test('register with mandatory fields', async ({ homePage, registerPage, page }) => {
+test('register with mandatory fields', async ({ homePage, registerPage }) => {
 
     await homePage.openApplication()
     await homePage.clickOnMyAccount()
@@ -19,7 +19,7 @@ test('register with mandatory fields', async ({ homePage, registerPage, page }) 
     await registerPage.submitForm()
 })
 
-test('register without filling any fields', async ({ homePage, registerPage, page }) => {
+test('register without filling any fields', async ({ homePage, registerPage }) => {
 
     await homePage.openApplication()
     await homePage.clickOnMyAccount()
