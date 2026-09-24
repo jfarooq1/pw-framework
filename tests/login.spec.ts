@@ -1,45 +1,34 @@
-import { expect, test } from '@playwright/test'
-import { HomePage } from '../pages/HomePage'
-import { LoginPage } from '../pages/LoginPage'
+import { expect } from '@playwright/test'
+import { test } from '../fixtures/POMFixtures'
 
-test('login with valid credentials', async ({ page }) => {
+test('login with valid credentials', async ({ homePage, loginPage, page }) => {
+    await homePage.openApplication()
+    await homePage.clickOnMyAccount()
+    await homePage.openLoginPage()
 
-    const home = new HomePage(page)
-    const login = new LoginPage(page)
-
-    await home.openApplication()
-    await home.clickOnMyAccount()
-    await home.openLoginPage()
-
-    await login.enterEmail()
-    await login.enterPassword()
-    await login.clickLoginButton()
-    await login.expectSuccessMessage()
+    await loginPage.enterEmail()
+    await loginPage.enterPassword()
+    await loginPage.clickLoginButton()
+    await loginPage.expectSuccessMessage()
 })
 
 
-test('login with in valid credentials', async ({ page }) => {
-    const home = new HomePage(page)
-    const login = new LoginPage(page)
+test('login with in valid credentials', async ({ homePage, loginPage, page }) => {
+    await homePage.openApplication()
+    await homePage.clickOnMyAccount()
+    await homePage.openLoginPage()
 
-    await home.openApplication()
-    await home.clickOnMyAccount()
-    await home.openLoginPage()
-
-    await login.enterEmail()
-    await login.enterWrongPassword()
-    await login.clickLoginButton()
-    await login.expectFailMessage()
+    await loginPage.enterEmail()
+    await loginPage.enterWrongPassword()
+    await loginPage.clickLoginButton()
+    await loginPage.expectFailMessage()
 })
 
-test('login with empty credentials', async ({ page }) => {
-    const home = new HomePage(page)
-    const login = new LoginPage(page)
+test('login with empty credentials', async ({ homePage, loginPage, page }) => {
+    await homePage.openApplication()
+    await homePage.clickOnMyAccount()
+    await homePage.openLoginPage()
 
-    await home.openApplication()
-    await home.clickOnMyAccount()
-    await home.openLoginPage()
-
-    await login.clickLoginButton()
-    await login.expectFailMessage()
+    await loginPage.clickLoginButton()
+    await loginPage.expectFailMessage()
 })

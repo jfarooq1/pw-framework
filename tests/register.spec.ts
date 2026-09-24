@@ -1,17 +1,13 @@
-import { test, expect } from '@playwright/test'
-import { HomePage } from '../pages/HomePage'
-import { RegisterPage } from '../pages/RegisterPage'
+import { expect } from '@playwright/test'
+import { test } from '../fixtures/POMFixtures'
 
 
 
-test('register with mandatory fields', async ({ page }) => {
+test('register with mandatory fields', async ({ homePage, registerPage, page }) => {
 
-    const home = new HomePage(page)
-    const registerPage = new RegisterPage(page)
-
-    await home.openApplication()
-    await home.clickOnMyAccount()
-    await home.openRegisterPage()
+    await homePage.openApplication()
+    await homePage.clickOnMyAccount()
+    await homePage.openRegisterPage()
 
     await registerPage.enterFirstName()
     await registerPage.enterLastName()
@@ -23,14 +19,11 @@ test('register with mandatory fields', async ({ page }) => {
     await registerPage.submitForm()
 })
 
-test('register without filling any fields', async ({ page }) => {
+test('register without filling any fields', async ({ homePage, registerPage, page }) => {
 
-    const home = new HomePage(page)
-    const registerPage = new RegisterPage(page)
-
-    await home.openApplication()
-    await home.clickOnMyAccount()
-    await home.openRegisterPage()
+    await homePage.openApplication()
+    await homePage.clickOnMyAccount()
+    await homePage.openRegisterPage()
 
     await registerPage.submitForm()
     await registerPage.confirmWarningMessage()

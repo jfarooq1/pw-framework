@@ -1,15 +1,10 @@
-import { test, expect } from '@playwright/test'
-import { HomePage } from '../pages/HomePage'
-import { SearchPage } from '../pages/SearchPage'
+import { expect } from '@playwright/test'
+import { test } from '../fixtures/POMFixtures'
 
-test('Search for Existing Product', async ({ page }) => {
+test('Search for Existing Product', async ({ homePage, searchPage, page }) => {
 
-    const home = new HomePage(page)
-    const search = new SearchPage(page)
-
-    await home.openApplication()
-    
-    await search.enterProductName()
-    await search.clickSearchButton()
-    await search.verifyProductResult()
+    await homePage.openApplication()
+    await searchPage.enterProductName()
+    await searchPage.clickSearchButton()
+    await searchPage.verifyProductResult()
 })
