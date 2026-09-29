@@ -5,15 +5,17 @@ import { RegisterPage } from '../pages/RegisterPage'
 import { SearchPage } from '../pages/SearchPage'
 import { Page } from '@playwright/test'
 
-type myFixtures = {
+type MyFixtures = {
 
     homePage: HomePage
     loginPage: LoginPage
     registerPage: RegisterPage
     searchPage: SearchPage
+    registerPageReady: void
+    loginPageReady: void
 }
 
-export const test = baseTest.extend<myFixtures>({
+export const test = baseTest.extend<MyFixtures>({
 
     homePage: async ({ page }, use) => {
         const homePage = new HomePage(page)
@@ -33,6 +35,20 @@ export const test = baseTest.extend<myFixtures>({
     searchPage: async ({ page }, use) => {
         const searchPage = new SearchPage(page)
         await use(searchPage)
+    },
+
+    registerPageReady: async ({ homePage }, use) => {
+        await homePage.openApplication()
+        await homePage.clickOnMyAccount()
+        await homePage.openRegisterPage()
+        await use()
+    },
+
+    loginPageReady: async ({ homePage }, use) => {
+        await homePage.openApplication()
+        await homePage.clickOnMyAccount()
+        await homePage.openLoginPage()
+        await use()
     }
 })
 
